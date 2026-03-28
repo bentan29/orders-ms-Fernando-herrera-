@@ -1,0 +1,63 @@
+
+   * Para tomar las variables de entorno
+        pnpm add dotenv
+
+    * Validaciones de las variables de entorno
+        pnpm add joi
+
+    * Microservicios
+        pnpm add --save @nestjs/microservices
+
+    * Creamos el recurso -- en modo Microservice
+        nest g res orders --no-spec
+
+
+================= Docker
+
+    * Creamos el archivo docker-compose.yml y lo configuramos
+
+    * Levantamos docker, al levantarlo y tener configurado el docker-compose.yml nos va a crear la carpeta de postgress, y esa carpeta la tenemos que ignorar en el .gitignore
+        docker compose up -d
+    
+    * Creamos una tabla en tablePlus con los datos que le pusimos
+        ports:
+        - 5432:5432
+        environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=123456
+        - POSTGRES_DB=ordersdb
+
+
+====== Prisma / Atencion prisma 7 tiene problemas asi que bajamos a prisma 6
+
+    * Instalamos prisma / Prisma CLI (dev dependency)
+        pnpm add -D prisma@6
+
+    * Lo inicializamos
+        pnpm prisma init
+
+    * Instalacion prisma client
+        pnpm add @prisma/client@6
+        
+    * Cremos el schema como querramos
+
+    * Ejecutamos la migracion
+        pnpm prisma migrate dev --name init
+
+
+    ** Expandimos nuestro servicio que vamos a usar con prisma con 'extends PrismaClient implements OnModuleInit'
+
+
+==============
+
+    * Validaciones de los dtos
+        pnpm add class-validator class-transformer
+
+
+==========================================
+=============== Nats ===============
+
+    - Instalamos
+        pnpm i --save nats
+
+
